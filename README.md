@@ -7,11 +7,6 @@ Wich has to work like an add, check, and delete a task.
 
 It was used:
 
-* ``` js
-  element.createElement
-  element.createNodeText
-  ```
-
 * DOM manipulation
 
 ## Preview image
