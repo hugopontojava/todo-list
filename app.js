@@ -1,61 +1,40 @@
-// * Create a "close" button and append it to each list item
-let myNodelist = document.getElementsByTagName('li')
+let myTaskList = document.getElementsByTagName('li');
+let strg = localStorage; // TODO: use localStorage
 let i;
 
-for (i = 0; i < myNodelist.length; i++) {
-  let span = document.createElement('span');
-  let txt = document.createTextNode('\u00D7');
-  span.className = 'close';
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
+// * Check and uncheck tasks
+let list = document.getElementById('ulList');
 
-// * Click on a close button to hide the current list item
-let close = document.getElementsByClassName('close');
-
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    let div = this.parentElement;
-    div.style.display = 'none';
-  }
-};
-
-// * Add a "checked" symbol when clicking on a list item
-let test = document.getElementById('ulList')
-
-test.addEventListener('click', function (ev) {
+list.addEventListener('click', function (ev) {
   ev.target.classList.toggle('checked');
-}, false)
+})
 
-// * Create a new list item when clicking on the "Add" button
-let button = document.getElementsByClassName('btn_add')
-
-button[0].addEventListener('click', function () {
-  let li = document.createElement('li');
+// * Add tasks
+let btn = document.getElementsByClassName('btn_add');
+btn[0].addEventListener('click', function () {
   let inputValue = document.getElementById('inputBox').value;
-  let t = document.createTextNode(inputValue);
-
-  li.appendChild(t);
+  let li = document.createElement('li');
+  let txt = document.createTextNode(inputValue.charAt(0).toUpperCase() + inputValue.slice(1))    
+  
+  li.appendChild(txt)  
   if (inputValue === undefined || inputValue === null || inputValue === "") {
-    alert('You must write something!')
+    alert('You must write something!');
   } else {
       document.getElementById('ulList').appendChild(li);
-      console.log();
-      
-
-      // * Close button
-      let span = document.createElement("span");
-      let txt = document.createTextNode("\u00D7");
-
-      span.className = "close";
-      span.appendChild(txt);
-      myNodelist[i].appendChild(span);
-      
-      for (i = 0; i < close.length; i++) {
-        close[i].onclick = function() {
-          let div = this.parentElement;
-          div.style.display = "none";
-        }
-      }
+      closeButton();
     }
 })
+  
+// * Close button
+function closeButton() {
+  for (i = 0; i < myTaskList.length; i++) {
+    let span = document.createElement("span")
+    let txt = document.createTextNode("\u00d7")
+
+    span.className = "closeTask"
+    span.appendChild(txt)
+    myTaskList[i].appendChild(span)
+
+    // TODO: functionality on the close button
+  } 
+}
