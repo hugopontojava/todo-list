@@ -25,16 +25,22 @@ btn[0].addEventListener('click', function () {
     }
 })
   
-// * Close button
+// * Close button design
 function closeButton() {
   for (i = 0; i < myTaskList.length; i++) {
-    let span = document.createElement("span")
-    let txt = document.createTextNode("\u00d7")
+    let span = document.createElement("span");
+    let txt = document.createTextNode("\u00d7");
 
-    span.className = "closeTask"
-    span.appendChild(txt)
-    myTaskList[i].appendChild(span)
-
-    // TODO: functionality on the close button
+    span.className = "closeTask";
+    span.appendChild(txt);
+    myTaskList[i].appendChild(span);
   } 
+  // * Close button funcionality
+  let closeTask = document.getElementsByClassName('closeTask');
+  for (i = 0; i < closeTask.length; i++) {
+		closeTask[i].onclick = function () {
+      let task = this.parentElement;
+      task.remove();
+		}
+	}
 }
