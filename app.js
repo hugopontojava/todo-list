@@ -9,8 +9,8 @@ for (i = 1; i <= strg.length; i++) {
   let txt = document.createTextNode(strg.getItem(i));
   li.appendChild(txt);
   ulEl.appendChild(li);
-  console.log(strg.getItem(i));
 }
+closeButton();
 
 // * Check and uncheck tasks
 let list = document.getElementById('ulList');
@@ -48,8 +48,8 @@ function closeButton() {
   for (i = 0; i < closeTask.length; i++) {
 		closeTask[i].onclick = function () {
       let task = this.parentElement;
+      strg.removeItem(strg.key(task));
       task.remove();
-			// TODO: find a way to use strg.removeItem()
 		}
 	}
 }
